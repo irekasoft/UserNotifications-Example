@@ -12,6 +12,9 @@
 		A31AFF721FED8A6400AE157B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A31AFF701FED8A6400AE157B /* Main.storyboard */; };
 		A31AFF741FED8A6400AE157B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A31AFF731FED8A6400AE157B /* Assets.xcassets */; };
 		A31AFF771FED8A6400AE157B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A31AFF751FED8A6400AE157B /* LaunchScreen.storyboard */; };
+		A31AFF801FED8AB400AE157B /* CoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A31AFF7E1FED8AB400AE157B /* CoreData.xcdatamodeld */; };
+		A31AFFA71FED959B00AE157B /* DLLocalNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = A31AFFA61FED959A00AE157B /* DLLocalNotifications.swift */; };
+		A31AFFA91FED9BE400AE157B /* README-x.md in Resources */ = {isa = PBXBuildFile; fileRef = A31AFFA81FED9BE400AE157B /* README-x.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +25,9 @@
 		A31AFF731FED8A6400AE157B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A31AFF761FED8A6400AE157B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A31AFF781FED8A6400AE157B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A31AFF7F1FED8AB400AE157B /* CoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreData.xcdatamodel; sourceTree = "<group>"; };
+		A31AFFA61FED959A00AE157B /* DLLocalNotifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DLLocalNotifications.swift; sourceTree = "<group>"; };
+		A31AFFA81FED9BE400AE157B /* README-x.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "README-x.md"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,11 +61,14 @@
 			isa = PBXGroup;
 			children = (
 				A31AFF6C1FED8A6400AE157B /* AppDelegate.swift */,
+				A31AFFA61FED959A00AE157B /* DLLocalNotifications.swift */,
 				A31AFF6E1FED8A6400AE157B /* ViewController.swift */,
 				A31AFF701FED8A6400AE157B /* Main.storyboard */,
+				A31AFF7E1FED8AB400AE157B /* CoreData.xcdatamodeld */,
 				A31AFF731FED8A6400AE157B /* Assets.xcassets */,
 				A31AFF751FED8A6400AE157B /* LaunchScreen.storyboard */,
 				A31AFF781FED8A6400AE157B /* Info.plist */,
+				A31AFFA81FED9BE400AE157B /* README-x.md */,
 			);
 			path = "UserNotification-Example";
 			sourceTree = "<group>";
@@ -125,6 +134,7 @@
 			files = (
 				A31AFF771FED8A6400AE157B /* LaunchScreen.storyboard in Resources */,
 				A31AFF741FED8A6400AE157B /* Assets.xcassets in Resources */,
+				A31AFFA91FED9BE400AE157B /* README-x.md in Resources */,
 				A31AFF721FED8A6400AE157B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -138,6 +148,8 @@
 			files = (
 				A31AFF6F1FED8A6400AE157B /* ViewController.swift in Sources */,
 				A31AFF6D1FED8A6400AE157B /* AppDelegate.swift in Sources */,
+				A31AFFA71FED959B00AE157B /* DLLocalNotifications.swift in Sources */,
+				A31AFF801FED8AB400AE157B /* CoreData.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -277,6 +289,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 23A6EJTDXW;
 				INFOPLIST_FILE = "UserNotification-Example/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.irekasoft.UserNotification-Example";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -292,6 +305,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 23A6EJTDXW;
 				INFOPLIST_FILE = "UserNotification-Example/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.irekasoft.UserNotification-Example";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -322,6 +336,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		A31AFF7E1FED8AB400AE157B /* CoreData.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				A31AFF7F1FED8AB400AE157B /* CoreData.xcdatamodel */,
+			);
+			currentVersion = A31AFF7F1FED8AB400AE157B /* CoreData.xcdatamodel */;
+			path = CoreData.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = A31AFF611FED8A6400AE157B /* Project object */;
 }

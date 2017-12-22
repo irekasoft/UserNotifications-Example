@@ -15,6 +15,7 @@
 		A31AFF801FED8AB400AE157B /* CoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A31AFF7E1FED8AB400AE157B /* CoreData.xcdatamodeld */; };
 		A31AFFA71FED959B00AE157B /* DLLocalNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = A31AFFA61FED959A00AE157B /* DLLocalNotifications.swift */; };
 		A31AFFA91FED9BE400AE157B /* README-x.md in Resources */ = {isa = PBXBuildFile; fileRef = A31AFFA81FED9BE400AE157B /* README-x.md */; };
+		A31AFFBF1FEDC90600AE157B /* IRHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A31AFFBE1FEDC90600AE157B /* IRHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		A31AFF7F1FED8AB400AE157B /* CoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreData.xcdatamodel; sourceTree = "<group>"; };
 		A31AFFA61FED959A00AE157B /* DLLocalNotifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DLLocalNotifications.swift; sourceTree = "<group>"; };
 		A31AFFA81FED9BE400AE157B /* README-x.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "README-x.md"; sourceTree = "<group>"; };
+		A31AFFBE1FEDC90600AE157B /* IRHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IRHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				A31AFF6C1FED8A6400AE157B /* AppDelegate.swift */,
 				A31AFFA61FED959A00AE157B /* DLLocalNotifications.swift */,
 				A31AFF6E1FED8A6400AE157B /* ViewController.swift */,
+				A31AFFBE1FEDC90600AE157B /* IRHelper.swift */,
 				A31AFF701FED8A6400AE157B /* Main.storyboard */,
 				A31AFF7E1FED8AB400AE157B /* CoreData.xcdatamodeld */,
 				A31AFF731FED8A6400AE157B /* Assets.xcassets */,
@@ -149,6 +152,7 @@
 				A31AFF6F1FED8A6400AE157B /* ViewController.swift in Sources */,
 				A31AFF6D1FED8A6400AE157B /* AppDelegate.swift in Sources */,
 				A31AFFA71FED959B00AE157B /* DLLocalNotifications.swift in Sources */,
+				A31AFFBF1FEDC90600AE157B /* IRHelper.swift in Sources */,
 				A31AFF801FED8AB400AE157B /* CoreData.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -18,6 +18,8 @@ class ViewController: UIViewController {
   
   let userNotificationCenter = UNUserNotificationCenter.current()
   
+  let calendar = Calendar(identifier: .gregorian)
+  
   override func viewDidLoad() {
     super.viewDidLoad()
 
@@ -69,29 +71,7 @@ class ViewController: UIViewController {
     
   }
   
-  func is24h()->Bool{
-    
-    let dateFormatter = DateFormatter()
-    dateFormatter.locale = NSLocale.current
-    dateFormatter.dateStyle = .none
-    dateFormatter.timeStyle = .short
-    
-    let dateString = dateFormatter.string(from: Date())
-    let amRange = dateString.range(of: dateFormatter.amSymbol)
-    let pmRange = dateString.range(of: dateFormatter.pmSymbol)
-    
-    
-    print(dateString)
-    print(dateFormatter.amSymbol)
-    
-    
-    if ((amRange != nil) || (pmRange != nil)){
-      return false
-    }else {
-      return true
-    }
-    
-  }
+  
   
   // MARK: - Actions
   
@@ -99,24 +79,33 @@ class ViewController: UIViewController {
     
     print(datePicker.date)
     
-    print("24 hour", is24h() )
+    print("24 hour", IRHelper.is24h() )
     
     let selectedDate = datePicker.date
     
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "HH:mm"
     
+   let hour = calendar.component(.hour, from: selectedDate) // This will always return in 24-hour format of hour. 0-23
+    
+    let minute = calendar.component(.minute, from: selectedDate)
+    
+    print(hour, minute)
     
     
-    // (Sunday = 1, Monday = 2, Tuesday = 3, Wednesday = 4, thursday = 5, Friday = 6, Saturday = 7)
     for btn in btns_weekday {
       
-      
-      
       if (btn.isSelected){
+
         print("btn \(btn.tag) is selected")
         
+        // (Sunday = 1, Monday = 2, Tuesday = 3, Wednesday = 4, thursday = 5, Friday = 6, Saturday = 7)
+        let weekday = btn.tag
         
+        let createdDate = createDate(weekday: weekday, hour: hour, minute: minute)
+        
+        scheduleNotification(at: createdDate, body: "For \(hour):\(minute)", titles: "Notif")
+
         
       }
       
@@ -157,7 +146,9 @@ class ViewController: UIViewController {
     let request = UNNotificationRequest(identifier: "textNotification", content: content, trigger: trigger)
     
     UNUserNotificationCenter.current().delegate = self
+    
     //UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+    
     UNUserNotificationCenter.current().add(request) {(error) in
       if let error = error {
         print("Uh oh! We had an error: \(error)")
@@ -197,7 +188,7 @@ extension ViewController : UNUserNotificationCenterDelegate {
     
     // To show the banner in-app
     
-    tv_top.text = "just got notification"
+    tv_top.text = "Just got notification"
     
     completionHandler([.badge, .alert, .sound])
     

@@ -16,6 +16,9 @@ class ViewController: UIViewController {
   @IBOutlet var btns_weekday: [UIButton]!
   @IBOutlet weak var datePicker: UIDatePicker!
   
+  @IBOutlet weak var lbl_smile: UILabel!
+  
+  
   let userNotificationCenter = UNUserNotificationCenter.current()
   
   let calendar = Calendar(identifier: .gregorian)
@@ -30,6 +33,29 @@ class ViewController: UIViewController {
       self.updateTime()
       
     }
+    
+  }
+  
+  override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
+    
+    UIView.animate(withDuration: 1) {
+      
+      //self.lbl_smile.alpha = 0
+      
+    }
+    
+    let basicAnim = CABasicAnimation(keyPath: "opacity")
+
+    basicAnim.toValue = 0
+    basicAnim.autoreverses = true
+    basicAnim.duration = 0.5
+    basicAnim.repeatCount = 10000
+//    basicAnim.fillMode = "backwards"
+    
+    lbl_smile.layer.add(basicAnim, forKey: "aa")
+
+    
     
   }
   
@@ -113,6 +139,7 @@ class ViewController: UIViewController {
   
   }
 
+  // MARK: - Notification Creation
 
   //Create Date from picker selected value.
   func createDate(weekday: Int, hour: Int, minute: Int)->Date{

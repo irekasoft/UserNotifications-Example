@@ -34,6 +34,17 @@ class ViewController: UIViewController {
       
     }
     
+    // Create an unscheduled timer
+    let timer = Timer(
+      timeInterval: 0.1,
+      target: self,
+      selector: #selector(updateTime),
+      userInfo: nil,
+      repeats: true)
+    
+    // Add the timer to a runloop (in this case the main run loop)
+    RunLoop.main.add(timer, forMode: RunLoopMode.commonModes)
+    
   }
   
   override func viewDidAppear(_ animated: Bool) {
@@ -55,11 +66,40 @@ class ViewController: UIViewController {
     
     lbl_smile.layer.add(basicAnim, forKey: "aa")
 
-    
+//    addCATextLayer()
     
   }
   
-  func updateTime(){
+  let baseFontSize: CGFloat = 24.0
+  var textLayer = CATextLayer()
+  
+  func addCATextLayer(){
+    
+    // 1
+    
+    textLayer.frame = tv_top.bounds
+    
+    // 2
+    textLayer.string = "AAAA"
+    
+    // 3
+    var fontName: CFString = "Noteworthy-Light" as CFString
+    let noteworthyLightFont = CTFontCreateWithName(fontName, baseFontSize, nil)
+    fontName = "Helvetica" as CFString
+    let helveticaFont = CTFontCreateWithName(fontName, baseFontSize, nil)
+    
+    textLayer.font = CTFontCreateWithName(fontName, baseFontSize, nil)
+    
+    // 4
+    textLayer.foregroundColor = UIColor.darkGray.cgColor
+    textLayer.isWrapped = true
+    textLayer.alignmentMode = kCAAlignmentLeft
+    textLayer.contentsScale = UIScreen.main.scale
+    tv_top.layer.addSublayer(textLayer)
+    
+  }
+  
+  @objc func updateTime(){
     
     let dateFormatter = DateFormatter()
     dateFormatter.locale = NSLocale.current
@@ -71,9 +111,10 @@ class ViewController: UIViewController {
     
     DispatchQueue.main.async {
       self.tv_top.text = dateString
+      
     }
     
-
+//    self.textLayer.string = dateString
     
   }
   

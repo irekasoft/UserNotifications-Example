@@ -17,6 +17,7 @@
 		A31AFFA91FED9BE400AE157B /* README-x.md in Resources */ = {isa = PBXBuildFile; fileRef = A31AFFA81FED9BE400AE157B /* README-x.md */; };
 		A31AFFBF1FEDC90600AE157B /* IRHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A31AFFBE1FEDC90600AE157B /* IRHelper.swift */; };
 		A31AFFC11FEDCCA800AE157B /* AllNotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A31AFFC01FEDCCA800AE157B /* AllNotificationsViewController.swift */; };
+		A31AFFC41FEDE44200AE157B /* Readme.md in Resources */ = {isa = PBXBuildFile; fileRef = A31AFFC31FEDE44200AE157B /* Readme.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,7 +33,7 @@
 		A31AFFA81FED9BE400AE157B /* README-x.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "README-x.md"; sourceTree = "<group>"; };
 		A31AFFBE1FEDC90600AE157B /* IRHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IRHelper.swift; sourceTree = "<group>"; };
 		A31AFFC01FEDCCA800AE157B /* AllNotificationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllNotificationsViewController.swift; sourceTree = "<group>"; };
-		A31AFFC21FEDE3A600AE157B /* Readme.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Readme.md; sourceTree = "<group>"; };
+		A31AFFC31FEDE44200AE157B /* Readme.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = Readme.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,6 +50,7 @@
 		A31AFF601FED8A6400AE157B = {
 			isa = PBXGroup;
 			children = (
+				A31AFFC31FEDE44200AE157B /* Readme.md */,
 				A31AFF6B1FED8A6400AE157B /* UserNotification-Example */,
 				A31AFF6A1FED8A6400AE157B /* Products */,
 			);
@@ -76,7 +78,6 @@
 				A31AFF751FED8A6400AE157B /* LaunchScreen.storyboard */,
 				A31AFF781FED8A6400AE157B /* Info.plist */,
 				A31AFFA81FED9BE400AE157B /* README-x.md */,
-				A31AFFC21FEDE3A600AE157B /* Readme.md */,
 			);
 			path = "UserNotification-Example";
 			sourceTree = "<group>";
@@ -140,6 +141,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A31AFFC41FEDE44200AE157B /* Readme.md in Resources */,
 				A31AFF771FED8A6400AE157B /* LaunchScreen.storyboard in Resources */,
 				A31AFF741FED8A6400AE157B /* Assets.xcassets in Resources */,
 				A31AFFA91FED9BE400AE157B /* README-x.md in Resources */,

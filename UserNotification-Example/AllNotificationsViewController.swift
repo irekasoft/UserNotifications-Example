@@ -29,7 +29,12 @@ class AllNotificationsViewController: UIViewController {
       }
       
       self.notificationsRequest = _notificationsRequest
-      self.tableView.reloadData()
+      
+      DispatchQueue.main.async {
+        self.tableView.reloadData()
+      }
+      
+
       
     }
     
@@ -41,14 +46,34 @@ class AllNotificationsViewController: UIViewController {
   }
   
   
+  @IBAction func done2(_ sender: Any) {
+    dismiss(animated: true, completion: nil)
+  }
+  
   @IBAction func done(_ sender: Any) {
     
     dismiss(animated: true, completion: nil)
     
   }
   
+
+  @IBAction func removeAllNotifs(_ sender: Any) {
+    
+    userNotificationCenter.removeAllPendingNotificationRequests()
+    
+    perform(#selector(reloadTableViewData), with: nil, afterDelay: 0.3)
+    
+  }
+  
+  @objc func reloadTableViewData(){
+    
+    tableView.reloadData()
+    
+  }
   
 }
+
+
 
 extension AllNotificationsViewController : UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -71,13 +96,16 @@ extension AllNotificationsViewController : UITableViewDataSource {
 //  let identifier = notificationRequest.identifier
     
     let body = notificationRequest.content.body
+    let identifier = notificationRequest.identifier
     cell?.textLabel?.text = body
     
     if let trigger = notificationRequest.trigger as? UNCalendarNotificationTrigger {
       
       print(trigger.dateComponents.date)
       
-      cell?.detailTextLabel?.text = "\(trigger.dateComponents.date?.description ?? "")"
+      cell?.detailTextLabel?.text = "\(identifier)"
+      
+      
       
     }
 

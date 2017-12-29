@@ -61,7 +61,8 @@ class ViewController: UIViewController {
     basicAnim.toValue = 0
     basicAnim.autoreverses = true
     basicAnim.duration = 0.5
-    basicAnim.repeatCount = 10000
+    basicAnim.repeatCount = Float.infinity
+    
 //    basicAnim.fillMode = "backwards"
     
     lbl_smile.layer.add(basicAnim, forKey: "aa")
@@ -69,6 +70,8 @@ class ViewController: UIViewController {
 //    addCATextLayer()
     
   }
+  
+
   
   let baseFontSize: CGFloat = 24.0
   var textLayer = CATextLayer()
@@ -99,12 +102,17 @@ class ViewController: UIViewController {
     
   }
   
+  // MARK: - Update
+  
   @objc func updateTime(){
     
     let dateFormatter = DateFormatter()
     dateFormatter.locale = NSLocale.current
-    dateFormatter.dateStyle = .short
-    dateFormatter.timeStyle = .full
+
+    dateFormatter.dateFormat = "(EEE) dd/mm/yy, h:mm:ss zzz"
+
+    //    dateFormatter.dateStyle = .short
+    //    dateFormatter.timeStyle = .full
     
     let dateString = dateFormatter.string(from: Date())
     
@@ -169,9 +177,9 @@ class ViewController: UIViewController {
         // (Sunday = 1, Monday = 2, Tuesday = 3, Wednesday = 4, thursday = 5, Friday = 6, Saturday = 7)
         let weekday = btn.tag
         
-        let createdDate = createDate(weekday: weekday, hour: hour, minute: minute)
+        let createdDate = timeDate(weekday: weekday, hour: hour, minute: minute)
         
-        scheduleNotification(at: createdDate, body: "For \(hour):\(minute)", titles: "Notif")
+        scheduleNotification(at: createdDate, body: "For \(hour):\(minute)", titles: "Notif", extraID: "\(btn.tag)")
 
         
       }
@@ -183,7 +191,7 @@ class ViewController: UIViewController {
   // MARK: - Notification Creation
 
   //Create Date from picker selected value.
-  func createDate(weekday: Int, hour: Int, minute: Int)->Date{
+  func timeDate(weekday: Int, hour: Int, minute: Int)->Date{
     
     var components = DateComponents()
     components.hour = hour
@@ -198,10 +206,10 @@ class ViewController: UIViewController {
     
   }
   
-  //Schedule Notification with weekly bases.
-  func scheduleNotification(at date: Date, body: String, titles:String) {
+  //Schedule Notification with weekly basis.
+  func scheduleNotification(at date: Date, body: String, titles:String, extraID: String) {
     
-    let triggerWeekly = Calendar.current.dateComponents([.weekday,.hour,.minute,.second,], from: date)
+    let triggerWeekly = Calendar.current.dateComponents([.weekday,.hour,.minute], from: date)
     
     let trigger = UNCalendarNotificationTrigger(dateMatching: triggerWeekly, repeats: true)
     
@@ -211,7 +219,11 @@ class ViewController: UIViewController {
     content.sound = UNNotificationSound.default()
     content.categoryIdentifier = "todoList"
     
-    let request = UNNotificationRequest(identifier: "textNotification", content: content, trigger: trigger)
+    let timestampAsString = String(format: "%f", NSDate.timeIntervalSinceReferenceDate)
+    let timestampParts = timestampAsString.components(separatedBy: ".")
+    let uniqueString = timestampParts[0]+"-\(extraID)"
+    
+    let request = UNNotificationRequest(identifier: uniqueString, content: content, trigger: trigger)
     
     UNUserNotificationCenter.current().delegate = self
     

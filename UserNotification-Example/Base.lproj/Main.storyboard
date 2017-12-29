@@ -180,6 +180,17 @@
                                 <color key="textColor" red="0.10195550397597231" green="1" blue="0.059461008555360184" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UH2-ts-lIk">
+                                <rect key="frame" x="154" y="337" width="49" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Repeating" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ile-yM-eAW">
+                                <rect key="frame" x="68" y="337" width="78" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -199,6 +210,7 @@
                     <connections>
                         <outlet property="datePicker" destination="wba-Qh-h4V" id="mg9-hD-ITM"/>
                         <outlet property="lbl_smile" destination="vFx-KJ-HmH" id="JnV-xt-3Eg"/>
+                        <outlet property="switch_repeating" destination="UH2-ts-lIk" id="0BV-Id-X5q"/>
                         <outlet property="tv_top" destination="sDd-Ji-2T5" id="wEO-B5-cOx"/>
                         <outletCollection property="btns_weekday" destination="KUC-y4-09r" collectionClass="NSMutableArray" id="LZM-FZ-7MD"/>
                         <outletCollection property="btns_weekday" destination="dk3-Zb-ROn" collectionClass="NSMutableArray" id="8nG-OJ-Wn7"/>

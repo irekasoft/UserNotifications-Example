@@ -18,6 +18,7 @@ class ViewController: UIViewController {
   
   @IBOutlet weak var lbl_smile: UILabel!
   
+  @IBOutlet weak var switch_repeating: UISwitch!
   
   let userNotificationCenter = UNUserNotificationCenter.current()
   
@@ -210,8 +211,11 @@ class ViewController: UIViewController {
   func scheduleNotification(at date: Date, body: String, titles:String, extraID: String) {
     
     let triggerWeekly = Calendar.current.dateComponents([.weekday,.hour,.minute], from: date)
+
     
-    let trigger = UNCalendarNotificationTrigger(dateMatching: triggerWeekly, repeats: true)
+    // change this for repeating or not
+    let repeats = switch_repeating.isOn
+    let trigger = UNCalendarNotificationTrigger(dateMatching: triggerWeekly, repeats: repeats)
     
     let content = UNMutableNotificationContent()
     content.title = titles
@@ -227,7 +231,6 @@ class ViewController: UIViewController {
     
     UNUserNotificationCenter.current().delegate = self
     
-    //UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
     
     UNUserNotificationCenter.current().add(request) {(error) in
       if let error = error {

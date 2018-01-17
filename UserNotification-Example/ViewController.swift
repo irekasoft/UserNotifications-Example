@@ -179,7 +179,7 @@ class ViewController: UIViewController {
     
     let createdDate = timeDate(weekday: 0, hour: hour, minute: minute)
     
-    scheduleNotification(at: createdDate, body: "For \(hour):\(minute)", titles: "Notif", notifID:uniqueString(), extraID: "0")
+    scheduleNotification(at: createdDate, body: "For \(hour):\(minute)", titles: "Notif", notifID:uniqueString(), extraID: "0",isRepeating: false)
     
   }
   
@@ -220,7 +220,7 @@ class ViewController: UIViewController {
         
         let createdDate = timeDate(weekday: weekday, hour: hour, minute: minute)
         
-        scheduleNotification(at: createdDate, body: "For \(hour):\(minute)", titles: "Notif", notifID:uniqueString, extraID: "\(btn.tag)")
+        scheduleNotification(at: createdDate, body: "For \(hour):\(minute)", titles: "Notif", notifID:uniqueString, extraID: "\(btn.tag)", isRepeating: true)
         
       }
       
@@ -240,8 +240,6 @@ class ViewController: UIViewController {
       components.weekday = weekday // sunday = 1 ... saturday = 7
     }
     
-
-//    components.weekdayOrdinal = 10
     components.timeZone = .current
     
     let calendar = Calendar(identifier: .gregorian)
@@ -251,13 +249,19 @@ class ViewController: UIViewController {
   }
   
   //Schedule Notification with weekly basis.
-  func scheduleNotification(at date: Date, body: String, titles:String, notifID: String,  extraID: String) {
+  func scheduleNotification(at date: Date, body: String, titles:String, notifID: String, extraID: String, isRepeating: Bool) {
+
+    var dateComponent : DateComponents!
     
-    let triggerWeekly = Calendar.current.dateComponents([.weekday,.hour,.minute], from: date)
+    if isRepeating == true {
+      dateComponent = Calendar.current.dateComponents([.weekday,.hour,.minute], from: date)
+    }else{
+      dateComponent = Calendar.current.dateComponents([.hour,.minute], from: date)
+    }    
     
     // change this for repeating or not
     let repeats = switch_repeating.isOn
-    let trigger = UNCalendarNotificationTrigger(dateMatching: triggerWeekly, repeats: repeats)
+    let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponent, repeats: repeats)
     
     let content = UNMutableNotificationContent()
     content.title = titles

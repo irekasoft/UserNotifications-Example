@@ -29,11 +29,11 @@ class ViewController: UIViewController {
 
     registerUserNotification()
     
-    Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { (timer) in
-      
-      self.updateTime()
-      
-    }
+//    Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { (timer) in
+//
+//      self.updateTime()
+//
+//    }
     
     // Create an unscheduled timer
     let timer = Timer(
@@ -141,10 +141,9 @@ class ViewController: UIViewController {
   }
 
   @IBAction func enableDisable(_ sender: UIButton) {
-    
+
     sender.isSelected = !sender.isSelected
 
-    
   }
   
   
@@ -153,6 +152,70 @@ class ViewController: UIViewController {
   
   @IBAction func trigger(_ sender: Any) {
     
+    var recurring = [String]()
+    
+    for btn in btns_weekday {
+      if (btn.isSelected){
+        print("btn \(btn.tag) is selected")
+        recurring.append("\(btn.tag)")
+      }
+    }
+    
+    if recurring.count > 0 {
+      createNotificationWeekdayBasis()
+    }else{
+      createOneOffNotification()
+    }
+
+    
+  }
+  
+  func createOneOffNotification(){
+    
+    let selectedDate = datePicker.date
+    
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "HH:mm"
+    
+    let calendar = Calendar(identifier: .gregorian)
+    
+    let hour = calendar.component(.hour, from: selectedDate) // This will always return in 24-hour format of hour. 0-23
+    let minute = calendar.component(.minute, from: selectedDate)
+
+    var components = DateComponents()
+    components.timeZone = .current
+    components.hour = hour
+    components.minute = minute
+    
+    
+    let triggerTime = Calendar.current.dateComponents([.hour,.minute], from: calendar.date(from: components)!)
+    
+    // change this for repeating or not
+    let trigger = UNCalendarNotificationTrigger(dateMatching: triggerTime, repeats: false)
+    
+    let content = UNMutableNotificationContent()
+    content.title = "titles"
+    content.body = "body"
+    //    content.sound = UNNotificationSound.default()
+    content.sound = UNNotificationSound.init(named: "ring.caf")
+    content.categoryIdentifier = "alarm"
+    
+    let timestampAsString = String(format: "%f", NSDate.timeIntervalSinceReferenceDate)
+    let timestampParts = timestampAsString.components(separatedBy: ".")
+    let uniqueString = timestampParts[0]+"-0"
+    
+    let request = UNNotificationRequest(identifier: uniqueString, content: content, trigger: trigger)
+    
+    UNUserNotificationCenter.current().delegate = self
+    
+    UNUserNotificationCenter.current().add(request) {(error) in
+      if let error = error {
+        print("Uh oh! We had an error: \(error)")
+      }
+    }
+  }
+  
+  func createNotificationWeekdayBasis(){
     print(datePicker.date)
     
     print("24 hour", IRHelper.is24h() )
@@ -162,17 +225,16 @@ class ViewController: UIViewController {
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "HH:mm"
     
-   let hour = calendar.component(.hour, from: selectedDate) // This will always return in 24-hour format of hour. 0-23
+    let hour = calendar.component(.hour, from: selectedDate) // This will always return in 24-hour format of hour. 0-23
     
     let minute = calendar.component(.minute, from: selectedDate)
     
     print(hour, minute)
     
-    
     for btn in btns_weekday {
       
       if (btn.isSelected){
-
+        
         print("btn \(btn.tag) is selected")
         
         // (Sunday = 1, Monday = 2, Tuesday = 3, Wednesday = 4, thursday = 5, Friday = 6, Saturday = 7)
@@ -181,12 +243,10 @@ class ViewController: UIViewController {
         let createdDate = timeDate(weekday: weekday, hour: hour, minute: minute)
         
         scheduleNotification(at: createdDate, body: "For \(hour):\(minute)", titles: "Notif", extraID: "\(btn.tag)")
-
         
       }
       
     }
-  
   }
 
   // MARK: - Notification Creation
@@ -198,7 +258,7 @@ class ViewController: UIViewController {
     components.hour = hour
     components.minute = minute
     components.weekday = weekday // sunday = 1 ... saturday = 7
-    components.weekdayOrdinal = 10
+//    components.weekdayOrdinal = 10
     components.timeZone = .current
     
     let calendar = Calendar(identifier: .gregorian)
@@ -211,7 +271,6 @@ class ViewController: UIViewController {
   func scheduleNotification(at date: Date, body: String, titles:String, extraID: String) {
     
     let triggerWeekly = Calendar.current.dateComponents([.weekday,.hour,.minute], from: date)
-
     
     // change this for repeating or not
     let repeats = switch_repeating.isOn
@@ -220,8 +279,9 @@ class ViewController: UIViewController {
     let content = UNMutableNotificationContent()
     content.title = titles
     content.body = body
-    content.sound = UNNotificationSound.default()
-    content.categoryIdentifier = "todoList"
+//    content.sound = UNNotificationSound.default()
+    content.sound = UNNotificationSound.init(named: "ring.caf")
+    content.categoryIdentifier = "alarm"
     
     let timestampAsString = String(format: "%f", NSDate.timeIntervalSinceReferenceDate)
     let timestampParts = timestampAsString.components(separatedBy: ".")
@@ -248,6 +308,7 @@ class ViewController: UIViewController {
 //    content.subtitle = "Subtitle"
     content.body = "You should drink more"
     content.sound = UNNotificationSound.default()
+    content.sound = UNNotificationSound.init(named: "ring.caf")
     content.badge = (UIApplication.shared.applicationIconBadgeNumber + 1) as NSNumber; // Always Increment
     content.categoryIdentifier = "notification-category" // For Actionable notification
     
@@ -273,7 +334,18 @@ extension ViewController : UNUserNotificationCenterDelegate {
     
     tv_top.text = "Just got notification"
     
-    completionHandler([.badge, .alert, .sound])
+    completionHandler([.sound])
+    
+    let vc = storyboard?.instantiateViewController(withIdentifier: "AlarmAlertVC")
+    present(vc!, animated: true, completion: nil)
+    
+  }
+  
+  func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+    
+    let vc = storyboard?.instantiateViewController(withIdentifier: "AlarmAlertVC")
+    
+    present(vc!, animated: true, completion: nil)
     
   }
   

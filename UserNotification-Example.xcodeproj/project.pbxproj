@@ -19,6 +19,9 @@
 		A31AFFC11FEDCCA800AE157B /* AllNotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A31AFFC01FEDCCA800AE157B /* AllNotificationsViewController.swift */; };
 		A31AFFC41FEDE44200AE157B /* Readme.md in Resources */ = {isa = PBXBuildFile; fileRef = A31AFFC31FEDE44200AE157B /* Readme.md */; };
 		A32D7D0D1FEEE149005043E3 /* MyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32D7D0C1FEEE149005043E3 /* MyView.swift */; };
+		A34B3169200E708D0002EE6C /* AlarmAlertVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34B3168200E708D0002EE6C /* AlarmAlertVC.swift */; };
+		A3E4B52B200E4E2D00548A39 /* ring.caf in Resources */ = {isa = PBXBuildFile; fileRef = A3E4B52A200E4E2C00548A39 /* ring.caf */; };
+		A3E4B52D200E4FE700548A39 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E4B52C200E4FE700548A39 /* NotificationManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +39,9 @@
 		A31AFFC01FEDCCA800AE157B /* AllNotificationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllNotificationsViewController.swift; sourceTree = "<group>"; };
 		A31AFFC31FEDE44200AE157B /* Readme.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = Readme.md; sourceTree = "<group>"; };
 		A32D7D0C1FEEE149005043E3 /* MyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyView.swift; sourceTree = "<group>"; };
+		A34B3168200E708D0002EE6C /* AlarmAlertVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmAlertVC.swift; sourceTree = "<group>"; };
+		A3E4B52A200E4E2C00548A39 /* ring.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ring.caf; sourceTree = "<group>"; };
+		A3E4B52C200E4FE700548A39 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,9 +78,12 @@
 				A31AFF6C1FED8A6400AE157B /* AppDelegate.swift */,
 				A31AFFA61FED959A00AE157B /* DLLocalNotifications.swift */,
 				A31AFF6E1FED8A6400AE157B /* ViewController.swift */,
+				A34B3168200E708D0002EE6C /* AlarmAlertVC.swift */,
 				A32D7D0C1FEEE149005043E3 /* MyView.swift */,
 				A31AFFC01FEDCCA800AE157B /* AllNotificationsViewController.swift */,
+				A3E4B52C200E4FE700548A39 /* NotificationManager.swift */,
 				A31AFFBE1FEDC90600AE157B /* IRHelper.swift */,
+				A3E4B52A200E4E2C00548A39 /* ring.caf */,
 				A31AFF701FED8A6400AE157B /* Main.storyboard */,
 				A31AFF7E1FED8AB400AE157B /* CoreData.xcdatamodeld */,
 				A31AFF731FED8A6400AE157B /* Assets.xcassets */,
@@ -144,6 +153,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A3E4B52B200E4E2D00548A39 /* ring.caf in Resources */,
 				A31AFFC41FEDE44200AE157B /* Readme.md in Resources */,
 				A31AFF771FED8A6400AE157B /* LaunchScreen.storyboard in Resources */,
 				A31AFF741FED8A6400AE157B /* Assets.xcassets in Resources */,
@@ -164,7 +174,9 @@
 				A31AFF6D1FED8A6400AE157B /* AppDelegate.swift in Sources */,
 				A31AFFA71FED959B00AE157B /* DLLocalNotifications.swift in Sources */,
 				A31AFFBF1FEDC90600AE157B /* IRHelper.swift in Sources */,
+				A34B3169200E708D0002EE6C /* AlarmAlertVC.swift in Sources */,
 				A31AFF801FED8AB400AE157B /* CoreData.xcdatamodeld in Sources */,
+				A3E4B52D200E4FE700548A39 /* NotificationManager.swift in Sources */,
 				A31AFFC11FEDCCA800AE157B /* AllNotificationsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

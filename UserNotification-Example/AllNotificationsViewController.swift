@@ -19,7 +19,6 @@ class AllNotificationsViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    
     userNotificationCenter.getPendingNotificationRequests { (_notificationsRequest) in
       
       for notificationRequest in _notificationsRequest {

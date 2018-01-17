@@ -111,12 +111,9 @@ class ViewController: UIViewController {
     dateFormatter.locale = NSLocale.current
 
     dateFormatter.dateFormat = "(EEE) dd/mm/yy, h:mm:ss zzz"
-
     //    dateFormatter.dateStyle = .short
     //    dateFormatter.timeStyle = .full
-    
     let dateString = dateFormatter.string(from: Date())
-    
     
     DispatchQueue.main.async {
       self.tv_top.text = dateString
@@ -128,7 +125,8 @@ class ViewController: UIViewController {
   }
   
   func registerUserNotification(){
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge])
+    
+    UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge])
     { (granted, error) in
       // Enable or disable features based on authorization.
     }
@@ -194,8 +192,8 @@ class ViewController: UIViewController {
     let trigger = UNCalendarNotificationTrigger(dateMatching: triggerTime, repeats: false)
     
     let content = UNMutableNotificationContent()
-    content.title = "titles"
-    content.body = "body"
+    content.title = "For \(hour):\(minute)"
+    content.body = "Notif"
     //    content.sound = UNNotificationSound.default()
     content.sound = UNNotificationSound.init(named: "ring.caf")
     content.categoryIdentifier = "alarm"
@@ -231,6 +229,10 @@ class ViewController: UIViewController {
     
     print(hour, minute)
     
+    let timestampAsString = String(format: "%f", NSDate.timeIntervalSinceReferenceDate)
+    let timestampParts = timestampAsString.components(separatedBy: ".")
+    let uniqueString = timestampParts[0]
+    
     for btn in btns_weekday {
       
       if (btn.isSelected){
@@ -242,7 +244,7 @@ class ViewController: UIViewController {
         
         let createdDate = timeDate(weekday: weekday, hour: hour, minute: minute)
         
-        scheduleNotification(at: createdDate, body: "For \(hour):\(minute)", titles: "Notif", extraID: "\(btn.tag)")
+        scheduleNotification(at: createdDate, body: "For \(hour):\(minute)", titles: "Notif", notifID:uniqueString, extraID: "\(btn.tag)")
         
       }
       
@@ -268,7 +270,7 @@ class ViewController: UIViewController {
   }
   
   //Schedule Notification with weekly basis.
-  func scheduleNotification(at date: Date, body: String, titles:String, extraID: String) {
+  func scheduleNotification(at date: Date, body: String, titles:String, notifID: String,  extraID: String) {
     
     let triggerWeekly = Calendar.current.dateComponents([.weekday,.hour,.minute], from: date)
     
@@ -283,9 +285,7 @@ class ViewController: UIViewController {
     content.sound = UNNotificationSound.init(named: "ring.caf")
     content.categoryIdentifier = "alarm"
     
-    let timestampAsString = String(format: "%f", NSDate.timeIntervalSinceReferenceDate)
-    let timestampParts = timestampAsString.components(separatedBy: ".")
-    let uniqueString = timestampParts[0]+"-\(extraID)"
+    let uniqueString = notifID+"-\(extraID)"
     
     let request = UNNotificationRequest(identifier: uniqueString, content: content, trigger: trigger)
     

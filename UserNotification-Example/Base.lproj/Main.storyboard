@@ -177,17 +177,6 @@
                                 <rect key="frame" x="73" y="441" width="230" height="123"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UH2-ts-lIk">
-                                        <rect key="frame" x="106" y="20" width="49" height="31"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </switch>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Repeating" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ile-yM-eAW">
-                                        <rect key="frame" x="20" y="20" width="78" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8e5-ay-hUh">
                                         <rect key="frame" x="46" y="93" width="124" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -221,7 +210,6 @@
                     <connections>
                         <outlet property="datePicker" destination="wba-Qh-h4V" id="mg9-hD-ITM"/>
                         <outlet property="lbl_smile" destination="vFx-KJ-HmH" id="JnV-xt-3Eg"/>
-                        <outlet property="switch_repeating" destination="UH2-ts-lIk" id="0BV-Id-X5q"/>
                         <outlet property="tv_top" destination="rDK-uS-zrV" id="IQg-po-pK3"/>
                         <outletCollection property="btns_weekday" destination="dk3-Zb-ROn" collectionClass="NSMutableArray" id="8nG-OJ-Wn7"/>
                         <outletCollection property="btns_weekday" destination="q4e-gB-NAt" collectionClass="NSMutableArray" id="6I4-Bd-EAl"/>
@@ -273,7 +261,7 @@
                                 <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="VgK-Aq-SgQ" detailTextLabel="6QF-yx-OMm" rowHeight="80" style="IBUITableViewCellStyleValue1" id="2JO-Im-5NO">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="VgK-Aq-SgQ" detailTextLabel="6QF-yx-OMm" rowHeight="80" style="IBUITableViewCellStyleValue1" id="2JO-Im-5NO">
                                         <rect key="frame" x="0.0" y="28" width="320" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="2JO-Im-5NO" id="0iA-Ac-5Hu">

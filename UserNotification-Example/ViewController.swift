@@ -18,7 +18,7 @@ class ViewController: UIViewController {
   
   @IBOutlet weak var lbl_smile: UILabel!
   
-  @IBOutlet weak var switch_repeating: UISwitch!
+
   
   let userNotificationCenter = UNUserNotificationCenter.current()
   
@@ -257,11 +257,10 @@ class ViewController: UIViewController {
       dateComponent = Calendar.current.dateComponents([.weekday,.hour,.minute], from: date)
     }else{
       dateComponent = Calendar.current.dateComponents([.hour,.minute], from: date)
-    }    
+    }
     
     // change this for repeating or not
-    let repeats = switch_repeating.isOn
-    let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponent, repeats: repeats)
+    let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponent, repeats: isRepeating)
     
     let content = UNMutableNotificationContent()
     content.title = titles

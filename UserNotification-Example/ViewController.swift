@@ -79,22 +79,16 @@ class ViewController: UIViewController {
   
   func addCATextLayer(){
     
-    // 1
-    
     textLayer.frame = tv_top.bounds
-    
-    // 2
     textLayer.string = "AAAA"
-    
-    // 3
+
     var fontName: CFString = "Noteworthy-Light" as CFString
     let noteworthyLightFont = CTFontCreateWithName(fontName, baseFontSize, nil)
     fontName = "Helvetica" as CFString
     let helveticaFont = CTFontCreateWithName(fontName, baseFontSize, nil)
     
     textLayer.font = CTFontCreateWithName(fontName, baseFontSize, nil)
-    
-    // 4
+
     textLayer.foregroundColor = UIColor.darkGray.cgColor
     textLayer.isWrapped = true
     textLayer.alignmentMode = kCAAlignmentLeft
@@ -144,8 +138,6 @@ class ViewController: UIViewController {
 
   }
   
-  
-  
   // MARK: - Actions
   
   @IBAction func trigger(_ sender: Any) {
@@ -185,32 +177,18 @@ class ViewController: UIViewController {
     components.hour = hour
     components.minute = minute
     
+    let createdDate = timeDate(weekday: 0, hour: hour, minute: minute)
     
-    let triggerTime = Calendar.current.dateComponents([.hour,.minute], from: calendar.date(from: components)!)
+    scheduleNotification(at: createdDate, body: "For \(hour):\(minute)", titles: "Notif", notifID:uniqueString(), extraID: "0")
     
-    // change this for repeating or not
-    let trigger = UNCalendarNotificationTrigger(dateMatching: triggerTime, repeats: false)
-    
-    let content = UNMutableNotificationContent()
-    content.title = "For \(hour):\(minute)"
-    content.body = "Notif"
-    //    content.sound = UNNotificationSound.default()
-    content.sound = UNNotificationSound.init(named: "ring.caf")
-    content.categoryIdentifier = "alarm"
+  }
+  
+  func uniqueString()-> String {
     
     let timestampAsString = String(format: "%f", NSDate.timeIntervalSinceReferenceDate)
     let timestampParts = timestampAsString.components(separatedBy: ".")
-    let uniqueString = timestampParts[0]+"-0"
+    return timestampParts[0]
     
-    let request = UNNotificationRequest(identifier: uniqueString, content: content, trigger: trigger)
-    
-    UNUserNotificationCenter.current().delegate = self
-    
-    UNUserNotificationCenter.current().add(request) {(error) in
-      if let error = error {
-        print("Uh oh! We had an error: \(error)")
-      }
-    }
   }
   
   func createNotificationWeekdayBasis(){
@@ -229,9 +207,7 @@ class ViewController: UIViewController {
     
     print(hour, minute)
     
-    let timestampAsString = String(format: "%f", NSDate.timeIntervalSinceReferenceDate)
-    let timestampParts = timestampAsString.components(separatedBy: ".")
-    let uniqueString = timestampParts[0]
+    let uniqueString = self.uniqueString()
     
     for btn in btns_weekday {
       
@@ -259,7 +235,12 @@ class ViewController: UIViewController {
     var components = DateComponents()
     components.hour = hour
     components.minute = minute
-    components.weekday = weekday // sunday = 1 ... saturday = 7
+    
+    if weekday != 0 {
+      components.weekday = weekday // sunday = 1 ... saturday = 7
+    }
+    
+
 //    components.weekdayOrdinal = 10
     components.timeZone = .current
     
@@ -290,7 +271,6 @@ class ViewController: UIViewController {
     let request = UNNotificationRequest(identifier: uniqueString, content: content, trigger: trigger)
     
     UNUserNotificationCenter.current().delegate = self
-    
     
     UNUserNotificationCenter.current().add(request) {(error) in
       if let error = error {

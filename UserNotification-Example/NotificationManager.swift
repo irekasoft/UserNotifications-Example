@@ -27,4 +27,31 @@ class NotificationManager: NSObject {
     
   }
   
+  //Schedule Notification with weekly basis.
+  func scheduleNotification(at date: Date, body: String, titles:String, notifID: String, extraID: String) {
+    
+    let triggerWeekly = Calendar.current.dateComponents([.weekday,.hour,.minute], from: date)
+    
+    // change this for repeating or not
+    let trigger = UNCalendarNotificationTrigger(dateMatching: triggerWeekly, repeats: true)
+    
+    let content = UNMutableNotificationContent()
+    content.title = titles
+    content.body = body
+    //    content.sound = UNNotificationSound.default()
+    content.sound = UNNotificationSound.init(named: "ring.caf")
+    content.categoryIdentifier = "alarm"
+    
+    let uniqueString = notifID+"-\(extraID)"
+    
+    let request = UNNotificationRequest(identifier: uniqueString, content: content, trigger: trigger)
+    
+    UNUserNotificationCenter.current().add(request) {(error) in
+      if let error = error {
+        print("Uh oh! We had an error: \(error)")
+      }
+    }
+    
+  }
+  
 }
